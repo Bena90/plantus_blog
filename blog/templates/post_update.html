@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    - Update post!
+{% endblock %}
+
+{% block blog_base %}
+
+{% if user.is_authenticated and user.id == post.author.id%}
+<div>
+    <h1> Update your post: </h1>
+    <div class='d-flex justify-content-center border-bottom pb-3'>
+        <div class='form-group w-50'>
+            <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class='btn btn-success btn-sm'> Update </button>
+            <form/>
+        </div>
+    </div>   
+</div>
+{% else %}
+
+    <h2>You don't have permission!</h2>
+    
+{% endif %}
+
+<a class='btn btn-success btn- mt-4' href="{% url 'home' %}"> Home </a>
+
+{% endblock blog_base %}

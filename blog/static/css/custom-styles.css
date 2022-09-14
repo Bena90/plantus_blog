@@ -1,0 +1,37 @@
+:root{
+    --bs-font-sans-serif: 'Raleway', sans-serif;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    
+}
+
+body{
+    color:rgb(60, 60, 60)
+}
+
+.django-ckeditor-widget {
+    display: flex !important;
+    width: 100%;
+  }
+
+.bg-dark {
+    background-color: #4A7856 !important;
+}
+
+.text-warning {
+    color: #FAA025;
+}
+
+.navbar{
+    min-height: 5vh;
+}
+
+main {
+min-height: 80vh;
+font-weight: 600;
+}
+
+.footer{
+display: flex;
+align-items: center;
+min-height: 15vh;
+}

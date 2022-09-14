@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block blog_base %}
+
+{% if category_posts %}
+    <div>
+        <h1>
+            Posts about {{cats}}:
+        </h1>
+        <ul class="list-inline mb-2">
+            {% for post  in category_posts %}
+            <li class="list-inline item w-100">
+                <div class="card shadow-sm mb-3 ">
+                    <div class="row g-0">
+                      <div class="col-md-4 d-flex align-items-center p-1">
+                        <img src="{{post.post_image}}" class="img-fluid rounded shadow-lg border" alt="{{ post.title }}">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body d-flex flex-column justify-content-between h-100">
+                            <div>
+                                <h4 class="card-title">
+                                    <a class ='text-decoration-none text-secondary' href="{% url 'post_details' post.pk %}">
+                                        {{ post.title }}
+                                    </a>
+                                </h4>
+                                <p class='fw-normal fs-6 pb-0 m-0'>
+                                    <small><a class='text-decoration-none text-success' href="{% url 'category' post.category|slugify %}" >{{ post.category }}</a></small>
+                                </p>
+                                <p class="card-text">{{ post.body|slice:":250" }}...</p>
+                            </div>
+                            <div>
+                                <p class="card-text fs-6">
+                                    <small class="text-muted ">
+                                        By
+                                        {{ post.author.first_name }}
+                                        {{ post.author.last_name }}
+                                        -
+                                        {{ post.post_date }}
+                                        {% if user.is_authenticated and user.id == post.author.id%}
+                                        (<a class='text-decoration-none text-secondary' href="{% url 'post_update' post.pk  %}">
+                                            Edit
+                                        </a>)
+                                          -
+                                        (<a class='text-danger text-decoration-none' href="{% url 'post_delete' post.pk  %}">
+                                            Delete
+                                        </a>)                             
+                                        {% endif %}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </li>
+            {% endfor %}
+        <ul/>
+    </div>
+{% else %}
+    <div class='pt-5'>
+        <h2>No post about "{{cats}}" yet.</h2>
+    </div>
+    {% endif %}
+
+    <a class='btn btn-success btn-sm my-3' href="{% url 'home' %}">
+        Home
+    </a>
+{% endblock blog_base %}
+
+

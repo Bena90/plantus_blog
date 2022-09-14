@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    - Create category!
+{% endblock %}
+
+{% block blog_base %}
+
+<h1> Create category: </h1>
+<div class='form-group'>
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class='btn btn-success btn-sm'> Create </button>
+    <form/>
+</div>
+<br/>
+<br/>
+<br/>
+<a class='btn btn-success btn-sm' href="{% url 'home' %}"> Home </a>
+
+
+{% endblock blog_base %}

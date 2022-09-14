@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+    - Login
+{% endblock %}
+
+{% block blog_base %}
+<div class=" d-flex flex-column align-items-center mb-3">
+    <div class="border rounded-3 shadow-sm mt-5 pt-4 pb-5 px-5 bg-body w-75 ">
+        <h1> Login </h1>
+        <div class='form-group'>
+            <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='btn btn-success btn-sm'> Login </button>
+            <form/>
+        </div>
+    </div>
+    <p class='text-secondary fs-6 py-3'>
+        Not a member yet?
+        <a class="fs-6" href="{% url 'register' %}">Sign Up</a>
+        .
+    </p>
+    
+    <a class='btn btn-secondary btn-sm' href="{% url 'home' %}"> Home </a>
+
+</div>
+{% endblock blog_base %}
