@@ -7,9 +7,9 @@
 
 {% if user.is_authenticated and user.id == post.author.id%}
 <div>
-    <h1> Update your post: </h1>
+    <h2 class='mb-2'> Update a post: </h2>
     <div class='d-flex justify-content-center border-bottom pb-3'>
-        <div class='form-group w-50'>
+        <div class='border rounded shadow bg-white form-group w-75 px-5 py-4'>
             <form method="POST">
             {% csrf_token %}
             {{ form.media }}

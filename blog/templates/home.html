@@ -24,7 +24,7 @@
                                         </a>
                                     </h4>
                                     <p class='fw-normal fs-6 pb-0 m-0'>
-                                        <small><a class='text-decoration-none text-success' href="{% url 'category' post.category|slugify %}" >{{ post.category }}</a></small>
+                                        <small><a class='text-decoration-none text-success border rounded-5 p-1 bg-light' href="{% url 'category' post.category|slugify %}" >{{ post.category }}</a></small>
                                     </p>
                                     <p class="card-text">{{ post.body|slice:":100" }}...</p>
                                 </div>
@@ -37,11 +37,11 @@
                                             -
                                             {{ post.post_date }}
                                             {% if user.is_authenticated and user.id == post.author.id%}
-                                            (<a class='text-decoration-none text-secondary' href="{% url 'post_update' post.pk  %}">
+                                            (<a class='link-secondary' href="{% url 'post_update' post.pk  %}">
                                                 Edit
                                             </a>)
                                               -
-                                            (<a class='text-danger text-decoration-none' href="{% url 'post_delete' post.pk  %}">
+                                            (<a class='link-danger' href="{% url 'post_delete' post.pk  %}">
                                                 Delete
                                             </a>)                             
                                             {% endif %}

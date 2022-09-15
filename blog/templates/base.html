@@ -24,12 +24,12 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow">
         <div class="container-fluid">
-          <a class="navbar-brand ps-2" href="{% url 'home' %}">Plantus</a>
+          <a class="navbar-brand ps-3 fs-3" href="{% url 'home' %}">Plantus</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse  w-100" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 px-5 justify-content-evenly">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 px-5 justify-content-evenly fs-6">
                 <li class="nav-item">
                     <a class="nav-link active d-flex align-items-center gap-1" aria-current="page" href="{% url 'home' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-heart" viewBox="0 0 16 16">
@@ -55,11 +55,11 @@
             </ul>
             {% if  user.is_authenticated %}
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 pe-5">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown fs-4 fw-normal">
                         <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hello {{user}}!
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu ">
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
                         </ul>
@@ -67,7 +67,7 @@
             
             </ul>
             {% else %}
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 pe-5">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 pe-5 fs-4 fw-normal">
                 <li class="nav-item"><a class="nav-link text-warning fw-bold" href="{% url 'login' %}">Login</a></li>
             </ul>
             {% endif %}
@@ -80,23 +80,23 @@
         {% endblock blog_base %}
     </main>
 
-    <footer class="footer bg-dark navbar-dark border-top shadow">
+    <footer class="footer bg-dark navbar-dark border-top shadow px-5">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                    <ul class="list-inline mb-2">
+                    <ul class="list-inline mb-2 text-light">
                         <li class="list-inline-item">
-                            <a class="nav-link" href="#!">Ayuda</a>
+                            <a class="nav-link " href="#!">Ayuda</a>
                         </li>
 
                         <li class="list-inline-item">
                             <a class="nav-link" href="#!">Contacto</a>
                         </li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Curso de Python - CoderHouse.</p>
+                    <p class="small mb-4 mb-lg-0 text-light">&copy; Curso de Python - CoderHouse.</p>
                 </div>
                 <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                    <ul class="list-inline mb-0">
+                    <ul class="list-inline mb-0 text-light">
                         <li class="list-inline-item me-4">
                             <a class="nav-link" href="#!"><i class="bi-facebook fs-3"></i></a>
                         </li>

@@ -5,9 +5,9 @@
 
 {% block blog_base %}
 <div>
-    <h1> Crea tu artículo: </h1>
+    <h2 class='mb-2'> Create a post: </h2>
     <div class='d-flex justify-content-center border-bottom pb-3'>
-        <div class='form-group w-50'>
+        <div class='border rounded shadow bg-white form-group w-75 px-5 py-4'>
             <form method="POST">
             {% csrf_token %}
             {{ form.media }}
