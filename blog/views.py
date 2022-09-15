@@ -5,7 +5,7 @@ from blog.models import Post, Category
 from .forms import PostForm, PostFormUpdate, CategoryForm
 
 ## Auth
-from django.contrib.auth.decorators import login_required
+##from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class HomeView(ListView):
