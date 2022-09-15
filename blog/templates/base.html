@@ -59,8 +59,9 @@
                         <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hello {{user}}!
                         </a>
-                        <ul class="dropdown-menu ">
+                        <ul class="dropdown-menu shadow-lg">
                             <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'password' %}">Change Password</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
                         </ul>

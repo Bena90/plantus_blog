@@ -1,10 +1,12 @@
-from django.views.generic import CreateView, UpdateView, ListView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordChangeView
+
 
 from django.urls import reverse_lazy
-from plantus_members.forms import CustomRegisterForm, LoginForm, UserUpdateForm
+from plantus_members.forms import CustomRegisterForm, LoginForm, UserUpdateForm, UserPasswordForm
 from django.shortcuts import resolve_url
 
 class UserRegisterView (CreateView):
@@ -28,6 +30,8 @@ class UserUpdateView (LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-class UserProfileView (LoginRequiredMixin, ListView):
-    template_name   = 'profile.html'
+class UserChangePassword (PasswordChangeView):
+    form_class = UserPasswordForm
+    success_url = reverse_lazy('home')
 
+    
