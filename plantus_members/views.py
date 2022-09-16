@@ -1,8 +1,11 @@
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordChangeView
+from django.shortcuts import get_object_or_404
+from blog.models import Profile, Category
+
 
 
 from django.urls import reverse_lazy
@@ -31,7 +34,19 @@ class UserUpdateView (LoginRequiredMixin, UpdateView):
         return self.request.user
 
 class UserChangePassword (PasswordChangeView):
-    form_class = UserPasswordForm
+    form_class  = UserPasswordForm
     success_url = reverse_lazy('home')
+
+class UserProfileView (LoginRequiredMixin, DetailView):
+    model           = Profile
+    template_name   = "user_details.html"
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+        context = super(UserProfileView, self).get_context_data(*args, **kwargs)
+        context['category_menu'] = category_menu
+        context['page_user'] = page_user
+        return context
 
     

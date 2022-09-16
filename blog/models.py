@@ -1,4 +1,5 @@
-from unicodedata import category
+from tkinter import CASCADE
+from unicodedata import category, name
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -17,7 +18,6 @@ class Post(models.Model):
     title       = models.CharField(max_length=255)
     author      = models.ForeignKey(User, on_delete = models.CASCADE)
     body        = RichTextField(blank = True, null = True)
-    ##body        = models.TextField()
     post_image  = models.URLField(max_length=250, default='https://dummyimage.com/600x400/e0e0e0/878787.png&text=img')
     post_date   = models.DateField(auto_now_add=True)
     category    = models.CharField(max_length=255)
@@ -27,4 +27,13 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
-    
+
+class Profile (models.Model):
+    user            = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
+    description     = models.TextField()
+    avatar          = models.ImageField(upload_to='avatars', null=True, blank=True)
+    instagram_url   = models.CharField(max_length=256,null=True, blank=True)
+    facebook_url    = models.CharField(max_length=256,null=True, blank=True)
+
+    def __str__(self):
+        return str(self.user)

@@ -1,32 +1,57 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
     - {{post.title}}
 {% endblock %}
 
 {% block blog_base %}
 <div>
-    <div class='border-bottom'>
-        <h2> {{post.title}} <h2/>
-        <p class='text-secondary fw-normal fs-6 '>
-            <small> By: {{post.author.first_name}} {{post.author.last_name}} | {{post.post_date}}<small/>
+    <div class="row">
+        <div class="col">
+            <div class='border-bottom '>
+                <h2 > {{post.title}} <h2/>
+                <p class='text-secondary fw-normal fs-6 '>
+                    <small> By: {{post.author.first_name}} {{post.author.last_name}} | {{post.post_date}}<small/>
 
-            {% if user.is_authenticated and user.id == post.author.id%}
-            (<a class='text-decoration-none' href="{% url 'post_update' post.pk  %}">
-                Edit
-            </a>)
-                -
-            (<a class='text-danger text-decoration-none' href="{% url 'post_delete' post.pk  %}">
-                Delete
-            </a>)                             
-            {% endif %}
-        </p>
+                    {% if user.is_authenticated and user.id == post.author.id%}
+                    (<a class='text-decoration-none' href="{% url 'post_update' post.pk  %}">
+                        Edit
+                    </a>)
+                        -
+                    (<a class='text-danger text-decoration-none' href="{% url 'post_delete' post.pk  %}">
+                        Delete
+                    </a>)                             
+                    {% endif %}
+                </p>
+            </div>
+            <div class="border-bottom">
+                <p>
+                    {{ post.body|linebreaks  }}
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card my-3 shadow-sm" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-sm-4 d-flex justify-content-center p-3">
+                    {% if post.author.profile.avatar.url %}
+                    <img src="{{post.author.profile.avatar.url}}" class="img-fluid rounded-circle border border-5 border-light shadow" style="max-width:148px;max-width:148px;"alt="post.author">
+                    {% else %}
+                    <img src="{% static 'assets/1.jpg' %}" class="img-fluid rounded-circle border border-5 border-light shadow" style="max-width:148px;max-width:148px;"alt="post.author">
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Author: {{post.author.first_name}} {{post.author.last_name}}</h5>
+                      <p class="card-text">{{post.author.profile.description | slice:":200"}}...</p>
+                      <p class="card-text"><small class="text-muted">Joined: {{post.author.date_joined}}</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
     </div>
-    <div>
-        <p>
-            {{ post.body|linebreaks  }}
-        </p>
-    </div>
-    <a class='btn btn-success btn-sm' href="{% url 'home' %}">
+    <a class='btn btn-success btn-sm mt-3' href="{% url 'home' %}">
         Home
     </a>
 </div>
