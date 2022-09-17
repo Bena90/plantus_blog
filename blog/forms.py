@@ -1,6 +1,5 @@
-from email.policy import default
 from django import forms
-from .models import Post, Category
+from .models import Post, Category, Comment
 
 categories = Category.objects.all().values_list('name','name')
 
@@ -33,4 +32,13 @@ class PostFormUpdate(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'category': forms.Select(choices=categories, attrs={'class': 'form-control'}),
             'post_image': forms.URLInput(attrs={'class': 'form-control'})
+        }
+
+class CommentForm (forms.ModelForm):
+    class Meta:
+        model   = Comment
+        fields  = ('body_comment','author_comment')
+        widgets = {
+            'body_comment': forms.Textarea(attrs={'class': 'form-control'}),
+            'author_comment': forms.TextInput(attrs={'class': 'form-control', 'type':'hidden', 'id':'post_author'}),
         }

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Post, Category, Comment
-from .forms import PostForm, PostFormUpdate, CategoryForm
+from .forms import PostForm, PostFormUpdate, CategoryForm, CommentForm
 
 ## Auth
 ##from django.contrib.auth.decorators import login_required
@@ -57,3 +57,14 @@ def CategoryView(request, cats):
     print(cats)
     print(cats.replace('-',' ').capitalize())
     return render(request, 'category_posts.html', {'cats': cats.replace('-',' ').capitalize(), 'category_posts': category_posts})
+
+class CommentCreateView (CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'comments_add.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+    

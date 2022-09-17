@@ -59,7 +59,9 @@
                 {% for comment in post.comments.all %}
                 <div class="card w-75">
                     <div class="card-header">
-                        {{comment.author_comment}}
+                        <a class='text-decoration-none text-success' href="{% url 'user_profile' post.author.profile.id %}">
+                            {{comment.author_comment}}
+                        </a>
                     </div>
                     <div class="card-body">
                     <blockquote class="blockquote mb-0">
@@ -70,9 +72,11 @@
                 </div>
                 {% endfor %}
             {% endif %}
-            
-
-
+            <button class='btn btn-warning btn-sm mt-3' >
+                <a class='text-decoration-none text-success fw-semibold' href="{% url 'comment_add' post.pk %}">
+                    Add Comment
+                </a>
+            </button>
         </div>
     </div>
     <a class='btn btn-success btn-sm mt-3' href="{% url 'home' %}">

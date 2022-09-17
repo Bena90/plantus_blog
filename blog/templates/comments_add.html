@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    - Add comment to the post!
+{% endblock %}
+
+{% block blog_base %}
+
+<h3> Write your comment: </h3>
+<div class='form-group'>
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class='btn btn-success btn-sm'> Send </button>
+    <form/>
+    {{post.id}}
+</div>
+<br/>
+<br/>
+<br/>
+<a class='btn btn-success btn-sm' href="{% url 'home' %}"> Home </a>
+
+<script>
+    let author = "{{user.id}}";
+    let post = "{{post.id}}"
+    document.getElementById('post_author').value = author;
+    document.getElementById('post_id').value = post;
+</script>
+
+
+{% endblock blog_base %}
