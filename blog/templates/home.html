@@ -27,13 +27,13 @@
                                     <p class='fw-normal fs-6 pb-0 m-0'>
                                         <small><a class='text-decoration-none text-success border rounded-5 p-1 bg-light' href="{% url 'category' post.category|slugify %}" >{{ post.category }}</a></small>
                                     </p>
-                                    <p class="card-text">{{ post.body|slice:":100" }}...</p>
+                                    <p class="card-text">{{ post.body|slice:":100" |safe }}... <a class ='text-decoration-none text-success' href="{% url 'post_details' post.pk %}">Leer más</a></p>
                                 </div>
                                 <div>
                                     <p class="card-text fs-6">
                                         <small class="text-muted ">
                                             By
-                                            <a href="{% url "user_profile" post.author.profile.id %}">
+                                            <a href="{% url "user_profile" post.author.profile.id %}" class="text-decoration-none text-success">
                                                 {{ post.author.first_name }} {{ post.author.last_name }}
                                             </a>
                                             -
