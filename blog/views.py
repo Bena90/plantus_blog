@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from blog.models import Post, Category
+from blog.models import Post, Category, Comment
 from .forms import PostForm, PostFormUpdate, CategoryForm
 
 ## Auth
@@ -23,6 +23,13 @@ class HomeView(ListView):
 class PostDetailView (DetailView):
     model           = Post
     template_name   = 'post_details.html'
+
+    def get_context_data(self, *args, **kwargs):
+        comments_list = Comment.objects.all()
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        context['comments_list'] = comments_list
+        return context
+
 
 class PostCreateView (LoginRequiredMixin, CreateView):
     model           = Post

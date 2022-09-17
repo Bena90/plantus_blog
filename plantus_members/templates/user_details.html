@@ -20,6 +20,9 @@
                       <div class='border-top pt-3'>
                         <h3>
                             {{page_user.user.first_name}} {{page_user.user.last_name}} 
+                            {% if page_user.user.id == user.id %}
+                                <span> - <a class='text-success text-decoration-none' href="{% url 'update_profile' %}"><i class="bi bi-pencil-square"></i></a></span>
+                            {% endif %}
                         </h3>
                         <p class='card-title'>
                             Description:

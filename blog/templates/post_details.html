@@ -30,7 +30,7 @@
                 </p>
             </div>
         </div>
-        <div class="col">
+        <div class="col border-bottom">
             <div class="card my-3 shadow-sm" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-sm-4 d-flex justify-content-center p-3">
@@ -49,6 +49,30 @@
                   </div>
                 </div>
               </div>
+        </div>
+        <div class='border-bottom my-3 pb-3'>
+            <h4>Comments:</h4>
+            {% if not post.comments.all %}
+                <p> No comments yet.</p>
+
+            {% else %}
+                {% for comment in post.comments.all %}
+                <div class="card w-75">
+                    <div class="card-header">
+                        {{comment.author_comment}}
+                    </div>
+                    <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{comment.body_comment}}</p>
+                        <p class='text-secondary fw-normal'><small>{{comment.date_comment}}</small></p>
+                    </blockquote>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            
+
+
         </div>
     </div>
     <a class='btn btn-success btn-sm mt-3' href="{% url 'home' %}">
