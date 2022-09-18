@@ -1,5 +1,3 @@
-from tkinter import CASCADE
-from unicodedata import category, name
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
