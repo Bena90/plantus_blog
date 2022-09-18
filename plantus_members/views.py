@@ -9,7 +9,7 @@ from blog.models import Profile, Category
 
 
 from django.urls import reverse_lazy
-from plantus_members.forms import CustomRegisterForm, LoginForm, UserUpdateForm, UserPasswordForm
+from plantus_members.forms import CustomRegisterForm, LoginForm, UserUpdateForm, UserPasswordForm, UserEditProfileForm
 from django.shortcuts import resolve_url
 
 class UserRegisterView (CreateView):
@@ -32,6 +32,12 @@ class UserUpdateView (LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+class UserEditProfileView (LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class      = UserEditProfileForm
+    template_name   = 'user_edit_profile.html'
+    success_url     = reverse_lazy ('home')
 
 class UserChangePassword (PasswordChangeView):
     form_class  = UserPasswordForm

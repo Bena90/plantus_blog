@@ -18,12 +18,14 @@
                         {% endif %}
                       </div>
                       <div class='border-top pt-3'>
-                        <h3>
-                            {{page_user.user.first_name}} {{page_user.user.last_name}} 
+                        <div class="d-flex justify-content-start align-items-center gap-5">
+                            <h3>
+                                {{page_user.user.first_name}} {{page_user.user.last_name}} 
+                            </h3>
                             {% if page_user.user.id == user.id %}
-                                <span> - <a class='text-success text-decoration-none' href="{% url 'update_profile' %}"><i class="bi bi-pencil-square"></i></a></span>
+                                <a class="text-success text-decoration-none" href="{% url 'edit_profile' user.id %}"> <i class="bi bi-pencil-square"></i> Edit </a>
                             {% endif %}
-                        </h3>
+                        </div>
                         <p class='card-title'>
                             Description:
                         </p>
