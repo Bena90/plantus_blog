@@ -5,11 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import get_object_or_404
 from blog.models import Profile, Category
-
-
-
 from django.urls import reverse_lazy
-from plantus_members.forms import CustomRegisterForm, LoginForm, UserUpdateForm, UserPasswordForm, UserEditProfileForm
+from plantus_members.forms import CustomRegisterForm, LoginForm, UserUpdateForm, UserPasswordForm, UserEditProfileForm, ProfileForm
 from django.shortcuts import resolve_url
 
 class UserRegisterView (CreateView):
@@ -32,6 +29,13 @@ class UserUpdateView (LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+class UserAddProfileView(LoginRequiredMixin, CreateView):
+    model           = Profile
+    form_class      = ProfileForm
+    template_name   = 'user_add_profile.html'
+    success_url     = reverse_lazy ('home')
+    success_message = "Profile created successfully!"
 
 class UserEditProfileView (LoginRequiredMixin, UpdateView):
     model = Profile

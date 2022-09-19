@@ -61,7 +61,11 @@
                             Hello {{user}}!
                         </a>
                         <ul class="dropdown-menu shadow-lg">
+                            {% if  user.profile %}
                             <li><a class="dropdown-item" href="{% url "user_profile" user.profile.id %}"><i class="bi bi-person-circle"></i> Profile</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url "add_profile" %}"><i class="bi bi-person-circle"></i> Add Profile</a></li>
+                            {% endif %}
                             <li><a class="dropdown-item" href="{% url 'update_profile' %}"><i class="bi bi-pencil"></i> Edit Setting</a></li>
                             <li><a class="dropdown-item" href="{% url 'password' %}">Change Password</a></li>
                             <li><hr class="dropdown-divider"></li>

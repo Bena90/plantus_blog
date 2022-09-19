@@ -23,7 +23,7 @@
                                 {{page_user.user.first_name}} {{page_user.user.last_name}} 
                             </h3>
                             {% if page_user.user.id == user.id %}
-                                <a class="text-success text-decoration-none" href="{% url 'edit_profile' user.id %}"> <i class="bi bi-pencil-square"></i> Edit </a>
+                                <a class="text-success text-decoration-none" href="{% url 'edit_profile' user.profile.id %}"> <i class="bi bi-pencil-square"></i> Edit </a>
                             {% endif %}
                         </div>
                         <p class='card-title'>

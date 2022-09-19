@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% block title %}
-    Edit Profile
+    Create Profile
 {% endblock %}
 
 {% block blog_base %}
 
 <div class=" d-flex flex-column align-items-center mb-3">
-    {% if user.profile.id == profile.id%}
         <div class="border rounded-3 shadow-sm mt-5 pt-4 mb-3 pb-5 px-5 bg-body w-75 ">
-            <h1> Edit Profile </h1>
+            <h1> Create Profile </h1>
             <div class='form-group'>
                 <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -17,14 +16,14 @@
                 <form/>
             </div>
         </div>
-    {% else %}
-        <div class="alert alert-danger my-5" role="alert">
-            <h2 class> You are not authorized to be here</h2>
-        </div>
-    {% endif %}
     
     <a class='btn btn-secondary btn-sm' href="{% url 'home' %}"> Home </a>
 
 </div>
+
+<script>
+    let user = "{{user.id}}";
+    document.getElementById('user_id').value = user;
+</script>
 
 {% endblock blog_base %}

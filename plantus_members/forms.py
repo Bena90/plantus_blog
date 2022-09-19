@@ -16,7 +16,6 @@ class CustomRegisterForm (UserCreationForm):
     password2   = forms.CharField(
         label   ='Repita Contraseña', 
         widget  =forms.PasswordInput(attrs={'class': 'form-control'}))
-        
     
     class Meta:
         model   = User
@@ -38,13 +37,24 @@ class UserUpdateForm(forms.ModelForm):
 class UserEditProfileForm(forms.ModelForm):
     class Meta:
         model   = Profile
-        fields = ['description', 'avatar', 'instagram_url','facebook_url']
+        fields  = ['description', 'avatar', 'instagram_url','facebook_url']
         widgets = {
             'description'   : forms.Textarea(attrs={'class': 'form-control'}),
-            #'avatar'        : forms.TextInput(attrs={'class': 'form-control', 'type': 'file', 'id': 'formFile'}),
             'instagram_url' : forms.TextInput(attrs={'class': 'form-control'}),
             'facebook_url'  : forms.TextInput(attrs={'class': 'form-control'}),
-        }        
+        }
+
+class ProfileForm (forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields  = ['description', 'avatar', 'instagram_url','facebook_url', 'user']
+        widgets = {
+            'description'   : forms.Textarea(attrs={'class': 'form-control'}),
+            'instagram_url' : forms.TextInput(attrs={'class': 'form-control'}),
+            'facebook_url'  : forms.TextInput(attrs={'class': 'form-control'}),
+            'user': forms.TextInput(attrs={'class': 'form-control', 'type':'hidden', 'id':'user_id'}),
+
+        }
 
 class UserPasswordForm(PasswordChangeForm):
     old_password    = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
