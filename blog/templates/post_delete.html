@@ -8,11 +8,11 @@
 {% if user.is_authenticated and user.id == post.author.id%}
 
     <h1> Delete your post: </h1>
-    <div>
+    <div class='py-3 my-2 border-bottom'>
         <form method='POST'>
             {% csrf_token %}
             <strong> Are you sure? </strong><br/>
-            <button class='btn btn-danger btn-sm'> Delete Post </button>
+            <button class='btn btn-danger btn-sm mt-3'> Delete Post </button>
         </form>
     </div>
 

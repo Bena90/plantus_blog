@@ -6,8 +6,16 @@
     <h1>
         Welcome to plantus:
     </h1>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+    {% endif %}
     <div class='row'>
         <div class='col-lg-9 pe-3 '>
+            {% if object_list %}
             <ul class="col list-inline mb-2  w-100">
                 {% for post in object_list %}
                 <li class="list-inline item">
@@ -57,7 +65,11 @@
                 </li>
                 {% endfor %}
             <ul/>
+            {% else %}
+                <h4> No post yet. </h4>
+            {% endif %}
         </div>
+
 
         <div class='d-none d-lg-block col-lg-3 ps-3 border-start border-success p-2 border-opacity-10'>
             {% if user.is_authenticated %}
@@ -105,5 +117,13 @@
         </div>
     </div>
 </div>
+
+<script text="javascript">
+    setTimeout(fade_out, 3000);
+    function fade_out() {
+        $(".alert-success").fadeOut().empty();
+        $(".alert-success").fadeOut().empty();
+    }
+</script>
 {% endblock blog_base %}
 

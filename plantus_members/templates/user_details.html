@@ -45,14 +45,14 @@
                             <ul class="d-flex justify-content-center">
                                 {% if page_user.instagram_url%}
                                 <li class="list-inline-item px-4">
-                                    <a href="{{ page_user.instagram}}" class="text-success text-decoration-none">
+                                    <a href="{{page_user.instagram_url}}" target="_blank" rel="noreferrer noopener" class="text-success text-decoration-none">
                                         <i class="bi-instagram fs-1"></i>
                                     </a>
                                 </li>
                                 {% endif %}
                                 {% if page_user.facebook_url%}
                                 <li class="list-inline-item px-4">
-                                    <a href="{{ page_user.facebook}}" class="text-success ">
+                                    <a href="{{page_user.facebook_url}}" target="_blank" rel="noreferrer noopener" class="text-success ">
                                         <i class="bi-facebook fs-1"></i>
                                     </a>
                                 </li>
