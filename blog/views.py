@@ -65,7 +65,7 @@ def CategoryView(request, cats):
     print(cats.replace('-',' ').capitalize())
     return render(request, 'category_posts.html', {'cats': cats.replace('-',' ').capitalize(), 'category_posts': category_posts})
 
-class CommentCreateView (CreateView):
+class CommentCreateView (LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'comments_add.html'

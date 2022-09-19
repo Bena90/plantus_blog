@@ -61,7 +61,7 @@
                             Hello {{user}}!
                         </a>
                         <ul class="dropdown-menu shadow-lg">
-                            <li><a class="dropdown-item" href="{% url 'user_profile' user.id %}"><i class="bi bi-person-circle"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url "user_profile" post.author.profile.id %}"><i class="bi bi-person-circle"></i> Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'update_profile' %}"><i class="bi bi-pencil"></i> Edit Setting</a></li>
                             <li><a class="dropdown-item" href="{% url 'password' %}">Change Password</a></li>
                             <li><hr class="dropdown-divider"></li>
